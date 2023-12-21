@@ -15,10 +15,10 @@
   e colocar todo os formulario dentro das tags.
   -------------------------------------------------------------------------
 
-  o componente formik recebe dois attraibutos nesse caso 
+  O componente formik recebe dois atributos nesse caso 
 
   initialValues -> pra colocar valores pre-definidos nos campos
-  onSubmit -> oque fazer quandoi submit acontecer
+  onSubmit -> oque fazer quando submit acontecer
   
   mesmo estando dentro da tag do componente submit uma arrow function 
   ainda precisa ser criada ciorcundando o formulario por que cada campo 
@@ -28,7 +28,7 @@
   então eu consigo pegar os valores dentro do onSubmit colocar eles dentro da variavel values
   e converter para Json()
 
-  'nesse caso eu converti para jsno mais eu posso fazer outras coisas'
+  'nesse caso eu converti para json mais eu posso fazer outras coisas'
 
   <Formik
         initialValues={{ nome: '', email: '', nascimento: '' }}
@@ -59,6 +59,31 @@
 
       conclusão 
         Formik é uma ferramenta pratica achei mais facil doque usar hooks
+  ------------------------------------------------------------------------
+  VALIDANDO 
+    a função que tem a logica de validação fica dentro do atributo validate  
+
+   validate={(values)=>{
+
+          const errors = {};
+
+          if(!values.nome){
+            errors.nome = 'O nome é obrigatorio';
+          }
+          if(!values.email){
+            errors.email = 'O e-mail é obrigatorio';
+          }
+          if(!values.nascimento){
+            errors.nascimento = 'A data de nascimento é obrigatoria';
+          }
+          return errors;
+
+        }}
+
+
+
+
+
 
 
 

@@ -55,3 +55,20 @@ button:focus {
   border-color: #884ea0;
   box-shadow: 0 0 0 0.2rem rgba(155, 89, 182, 0.5);
 }
+
+.invalid-feedback{
+   width: 100%;
+   margin-top: 0.25rem;
+   font-size: 0.85rem;
+   color: red;
+}
+
+.is-invalid{
+  border-color: red;
+}
+
+.is-invalid:focus{
+  border-color: red;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+
+}
