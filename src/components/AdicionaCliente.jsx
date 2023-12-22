@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik,useField } from 'formik';
+import * as yup from 'yup';
 
 //criando um componente de Campo
 
@@ -27,32 +28,32 @@ const Campo = ({label, ...props}) =>{
 
 
 const AdicionaCliente = () => {
+  
+   const esquema = yup.object({
+
+    //validando os campos 
+     nome: yup.string()
+              .required('O nome é obrigatório')
+              .min(4,'O nome deve ter no minmimo 10 caracteres')
+              .max(30,'O nome deve ter no maximo 30 caracteres'),
+    //----------------------------------------------------------------
+     email: yup.string()
+               .required('O email é obrigatório')
+               .required('O emial é invalido'),
+
+    //----------------------------------------------------------------
+    nascimento: yup.date()
+                .required('A data de nascimento é obrigatoria')
+                .max(new Date(),'Você não pode ter nascido no futuro...')
+   })
+
   return (
     <>
       <h1>Cadastro de Clientes</h1>
       <Formik
         initialValues={{ nome: '', email: '', nascimento: '' }}
         onSubmit={(values)=>{alert(JSON.stringify(values))}}
-        validate={(values)=>{
-
-          const errors = {};
-
-          if(!values.nome){
-            errors.nome = 'O nome é obrigatorio';
-          }
-          if(!values.email){
-            errors.email = 'O e-mail é obrigatorio';
-          }
-            else if(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i.test(values.email)){
-
-            errors.email = 'O e-mail é invalido';
-          }
-          if(!values.nascimento){
-            errors.nascimento = 'A data de nascimento é obrigatoria';
-          }
-          return errors;
-
-        }}
+        validationSchema={esquema}
       >
         {(props) => (
           <form onSubmit={props.handleSubmit} noValidate>

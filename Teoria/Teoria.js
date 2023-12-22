@@ -81,9 +81,57 @@
         }}
 
 
+----------------------------------------------------------------------------------------------
+foi criado um compoente unico chamado Campo que recebe os atributos  e ja possui as funções dentro de dele 
 
 
+const Campo = ({label, ...props}) =>{
 
+  const [field, meta] = useField(props);
+
+  return(
+     <>
+     <label htmlFor={props.id}>{label}</label>
+     <input
+        {...field}
+        {...props}
+        className = {meta.error && meta.touched ? 'is-invalid':''}
+      />
+        {
+          meta.error && meta.touched?(
+             <div className="invalid-feedback">{meta.error}</div>): null}     
+     </>
+     )
+}
+
+------------------------------------------------------------------------
+
+REFATORAÇÃO COM YUP 
+ o biblioteca yup serve para validar dados vindos de um formulario antes de enviar para os servidor
+ nesse então ao inves de escrever varias linha de codigo basta adicionar o yup como eu fiz abaixo 
+
+ criei um objeto que recebe o yup e sua fucnções de validação 
+
+  const esquema = yup.object({
+
+    //validando os campos 
+     nome: yup.string()
+              .required('O nome é obrigatório')
+              .min(4,'O nome deve ter no minmimo 10 caracteres')
+              .max(30,'O nome deve ter no maximo 30 caracteres'),
+    //----------------------------------------------------------------
+     email: yup.string()
+               .required('O email é obrigatório')
+               .required('O emial é invalido'),
+
+    //----------------------------------------------------------------
+    nascimento: yup.date()
+                .required('A data de nascimento é obrigatoria')
+                .max(new Date(),'Você não pode ter nascido no futuro...')
+   })
+
+
+depois passei ele para o  validationSchema={esquema} do Formik
 
 
 
