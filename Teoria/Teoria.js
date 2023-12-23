@@ -133,6 +133,58 @@ REFATORAÇÃO COM YUP
 
 depois passei ele para o  validationSchema={esquema} do Formik
 
+DEPLOY
+
+Etapas de implantação
+1 - verificar se o dominio esta apontando pra pasta certa onde esta o index
+2 - configurar o servidor http pra ver se o acesso a index esta liberado 
+3 - gerar a build comm codigo otimizado pra colocar online 
+4 - fazer o upload do build para o servidor 
+
+o react tem um comando interno pra gerar uma build ele vai ler o codigo 
+otimizar ele e depois colocar em uma pasta e é essa pasta que eu tenho que mandar 
+para o servidor. 
+
+o comando e npm run build
+Antes de fazer o deploy tem que testar o software então o node 
+tem um comando que instala servidor na nmaquina e roda a build
+comando pra criar o servidor
+
+ npm install -g serve
+
+ comando pra rodar a build dentro dele 
+
+ npm run build 
+
+ ele vai te forneccer o link pra testar como a build vai se comportar 
+ dentro de um servidor real
+
+ passos pra ele rodar no Heroku 
+ 
+ 1- criar a conta 
+ 2- configurar o arquivo package.json o objeto scripts fica assim 
+ ----------------------------------------------------------------------
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "server -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+  ------------------------------------------------------------------
+
+  e isso que o servidor do heroku vai executar 
+  "start": "server -s build",
+  --------------------------------------------------------------------
+
+  
+
+
+
+
+ 
+
+
 
 
 
